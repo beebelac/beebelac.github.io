@@ -1,15 +1,194 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Markas Beebelac</title>
-    <style>
-        body { background-color: #111; color: #fff; font-family: sans-serif; text-align: center; margin-top: 20%; }
-        h1 { color: #00ffcc; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jual Beli Musang SPY</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background:
+        linear-gradient(rgba(236,72,153,0.85), rgba(168,85,247,0.85)),
+        url('https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #1f2933;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 32px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #fff;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin-top: 8px;
+      opacity: 0.9;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      align-items: start;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #ec4899;
+    }
+
+    /* ===== MODIF TOMBOL DOANG ===== */
+    .card button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ec4899, #a855f7);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      box-shadow: 0 4px 15px rgba(236,72,153,0.45);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: pulse 1.6s infinite;
+    }
+
+    .card button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(236,72,153,0.65);
+    }
+
+    .arrow {
+      transition: transform 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.85; }
+      50% { opacity: 1; }
+      100% { opacity: 0.85; }
+    }
+    /* ============================= */
+
+    .list {
+      margin-top: 16px;
+      padding-left: 18px;
+      display: none;
+      animation: fade 0.3s ease;
+    }
+
+    .list li {
+      margin-bottom: 6px;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #fff;
+      opacity: 0.85;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Selamat Datang di beebelac.my.id! 🔥</h1>
-    <p>Website ini sedang dibangun oleh Sang Developer Beebelac.</p>
+  <div class="container">
+    <header>
+      <h1>JUAL BELI MUSANG SPY</h1>
+      <p>Berbagai jenis musang siap dipilih</p>
+    </header>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Musang Ganas</h2>
+        <button onclick="toggleList('ganas', this)">
+          Lihat Daftar Musang <span class="arrow">▾</span>
+        </button>
+        <ul class="list" id="ganas">
+          <li>Ganas Alpha</li>
+          <li>Ganas Shadow</li>
+          <li>Ganas Xeno</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Musang Polos</h2>
+        <button onclick="toggleList('polos', this)">
+          Lihat Daftar Musang <span class="arrow">▾</span>
+        </button>
+        <ul class="list" id="polos">
+          <li>Polos Cream</li>
+          <li>Polos Latte</li>
+          <li>Polos Snow</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Musang Brutal</h2>
+        <button onclick="toggleList('brutal', this)">
+          Lihat Daftar Musang <span class="arrow">▾</span>
+        </button>
+        <ul class="list" id="brutal">
+          <li>Brutal King</li>
+          <li>Brutal Rage</li>
+          <li>Brutal Omega</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 Jual Beli Musang SPY
+    </footer>
+  </div>
+
+  <script>
+    function toggleList(id, btn) {
+      const el = document.getElementById(id);
+      const arrow = btn.querySelector('.arrow');
+
+      if (el.style.display === 'block') {
+        el.style.display = 'none';
+        arrow.style.transform = 'rotate(0deg)';
+      } else {
+        el.style.display = 'block';
+        arrow.style.transform = 'rotate(180deg)';
+      }
+    }
+  </script>
 </body>
 </html>
-
