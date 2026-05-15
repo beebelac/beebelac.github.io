@@ -3,125 +3,199 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jual Beli Musang SPY</title>
+  <title>Jual Beli Musang SPY - Premium</title>
 
   <style>
+    /* CSS Reset & Variable */
     * { box-sizing: border-box; }
+    :root {
+      --dark-pink: #831843;
+      --medium-pink: #be185d;
+      --light-pink: #fbcfe8;
+      --accent-purple: #701a75;
+      --glass: rgba(255, 255, 255, 0.95);
+    }
 
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background:
-  linear-gradient(rgba(236,72,153,0.85), rgba(168,85,247,0.85)),
-  url('https://files.catbox.moe/t0xdx6.jpg');
-      background-size: cover;
-      background-position: center;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      /* Background pink gelap & elegan */
+      background: linear-gradient(135deg, #4c0519 0%, #831843 50%, #701a75 100%);
       background-attachment: fixed;
       color: #1f2933;
+      line-height: 1.6;
     }
 
     .container {
-      max-width: 900px;
+      max-width: 1000px;
       margin: auto;
-      padding: 32px 20px;
+      padding: 40px 20px;
+      padding-bottom: 100px; /* Jarak bawah agar tidak tertutup tombol melayang */
     }
 
     header {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
       color: #fff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
 
     header h1 {
       margin: 0;
-      font-size: 2.4rem;
-      letter-spacing: 1px;
+      font-size: 2.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     header p {
-      margin-top: 8px;
+      font-size: 1.1rem;
       opacity: 0.9;
+      background: rgba(0,0,0,0.2);
+      display: inline-block;
+      padding: 5px 20px;
+      border-radius: 50px;
     }
 
+    /* Grid Layout */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-      align-items: start;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+      align-items: start; /* INI KUNCI FIX NYA BIAR KOTAK LAIN GAK IKUT MELAR */
     }
 
+    /* Card Styling */
     .card {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 22px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      background: var(--glass);
+      border-radius: 24px;
+      padding: 25px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
     }
 
     .card h2 {
       margin-top: 0;
-      color: #ec4899;
+      color: var(--dark-pink);
+      border-bottom: 2px solid var(--light-pink);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    /* ===== MODIF TOMBOL DOANG ===== */
-    .card button {
-      width: 100%;
-      padding: 14px;
-      border: none;
+    /* List & Price Styling */
+    .list {
+      margin-top: 15px;
+      padding: 0;
+      list-style: none;
+      display: none;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    .list li {
+      padding: 10px 15px;
+      background: #fdf2f8;
+      margin-bottom: 8px;
       border-radius: 12px;
-      background: linear-gradient(135deg, #ec4899, #a855f7);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+      border-left: 4px solid var(--medium-pink);
+    }
+
+    .price {
+      color: #16a34a;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    /* Button Styling */
+    .btn-toggle {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 15px;
+      background: linear-gradient(135deg, var(--medium-pink), var(--accent-purple));
       color: #fff;
       font-size: 1rem;
+      font-weight: 600;
       cursor: pointer;
-
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-
-      box-shadow: 0 4px 15px rgba(236,72,153,0.45);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      animation: pulse 1.6s infinite;
+      box-shadow: 0 4px 15px rgba(190, 24, 93, 0.4);
+      transition: all 0.3s ease;
+      margin-top: auto;
     }
 
-    .card button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 22px rgba(236,72,153,0.65);
+    .btn-toggle:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 6px 20px rgba(190, 24, 93, 0.6);
     }
 
-    .arrow {
-      transition: transform 0.3s ease;
-      font-size: 1.1rem;
+    .arrow { transition: transform 0.3s; }
+
+    /* Floating WhatsApp Button */
+    .floating-wa {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25d366;
+      color: white;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+      z-index: 1000;
+      transition: transform 0.3s ease, background 0.3s ease;
+      animation: bounce 2s infinite;
     }
 
-    @keyframes pulse {
-      0% { opacity: 0.85; }
-      50% { opacity: 1; }
-      100% { opacity: 0.85; }
-    }
-    /* ============================= */
-
-    .list {
-      margin-top: 16px;
-      padding-left: 18px;
-      display: none;
-      animation: fade 0.3s ease;
+    .floating-wa:hover {
+      transform: scale(1.08);
+      background: #20ba5a;
     }
 
-    .list li {
-      margin-bottom: 6px;
-    }
-
-    @keyframes fade {
-      from { opacity: 0; transform: translateY(-4px); }
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-12px); }
+      60% { transform: translateY(-6px); }
     }
 
     footer {
       text-align: center;
-      margin-top: 40px;
-      color: #fff;
-      opacity: 0.85;
+      margin-top: 20px;
+      color: rgba(255,255,255,0.7);
       font-size: 0.9rem;
+    }
+
+    /* Mobile Adjustment */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.8rem; }
+      .container { padding: 20px 15px; padding-bottom: 90px; }
+      .floating-wa { bottom: 20px; right: 20px; padding: 10px 20px; font-size: 1.1rem; }
     }
   </style>
 </head>
@@ -129,56 +203,82 @@
 <body>
   <div class="container">
     <header>
-      <h1>JUAL BELI MUSANG SPY</h1>
-      <p>Berbagai jenis musang siap dipilih</p>
+      <h1>Jual Beli Musang SPY</h1>
+      <p>Koleksi Musang Terlengkap & Berkualitas</p>
     </header>
 
     <section class="grid">
+      <!-- MUSANG GANAS (Termurah) -->
       <div class="card">
-        <h2>Musang Ganas</h2>
-        <button onclick="toggleList('ganas', this)">
+        <h2>Musang Ganas <span>🔥</span></h2>
+        <button class="btn-toggle" onclick="toggleList('ganas', this)">
           Lihat Daftar Musang <span class="arrow">▾</span>
         </button>
         <ul class="list" id="ganas">
-          <li>Ian</li>
-          <li>Ami</li>
-          <li>Fauji</li>
-          <li>Rey</li>
+          <li>Ian <span class="price">Rp 450.000</span></li>
+          <li>Ami <span class="price">Rp 500.000</span></li>
+          <li>Fauji <span class="price">Rp 550.000</span></li>
+          <li>Rey <span class="price">Rp 600.000</span></li>
         </ul>
       </div>
 
+      <!-- MUSANG BRUTAL (Menengah) -->
       <div class="card">
-        <h2>Musang Polos</h2>
-        <button onclick="toggleList('polos', this)">
-          Lihat Daftar Musang <span class="arrow">▾</span>
-        </button>
-        <ul class="list" id="polos">
-          <li>Celi</li>
-          <li>Misel</li>
-          <li>Nisa</li>
-          <li>Nana</li>
-          <li>Ika</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2>Musang Brutal</h2>
-        <button onclick="toggleList('brutal', this)">
+        <h2>Musang Brutal <span>⚡</span></h2>
+        <button class="btn-toggle" onclick="toggleList('brutal', this)">
           Lihat Daftar Musang <span class="arrow">▾</span>
         </button>
         <ul class="list" id="brutal">
-          <li>Ian</li>
-          <li>Cia</li>
-          <li>Danindra</li>
-          <li>Rei Sotor</li>
+          <li>Ian <span class="price">Rp 850.000</span></li>
+          <li>Cia <span class="price">Rp 900.000</span></li>
+          <li>Danindra <span class="price">Rp 1.000.000</span></li>
+          <li>Rei Sotor <span class="price">Rp 1.200.000</span></li>
+        </ul>
+      </div>
+
+      <!-- MUSANG POLOS (Termahal) -->
+      <div class="card">
+        <h2>Musang Polos <span>💎</span></h2>
+        <button class="btn-toggle" onclick="toggleList('polos', this)">
+          Lihat Daftar Musang <span class="arrow">▾</span>
+        </button>
+        <ul class="list" id="polos">
+          <li>Celi <span class="price">Rp 1.500.000</span></li>
+          <li>Misel <span class="price">Rp 1.750.000</span></li>
+          <li>Nisa <span class="price">Rp 2.000.000</span></li>
+          <li>Nana <span class="price">Rp 2.500.000</span></li>
+          <li>Ika <span class="price">Rp 3.000.000</span></li>
+        </ul>
+      </div>
+
+      <!-- KANDANG (Tambahan) -->
+      <div class="card">
+        <h2>Kandang Musang <span>🏠</span></h2>
+        <button class="btn-toggle" onclick="toggleList('kandang', this)">
+          Lihat Pilihan Kandang <span class="arrow">▾</span>
+        </button>
+        <ul class="list" id="kandang">
+          <li>Kandang Size S <span class="price">Rp 150.000</span></li>
+          <li>Kandang Size M <span class="price">Rp 300.000</span></li>
+          <li>Kandang Size L <span class="price">Rp 500.000</span></li>
+          <li>Kandang Custom <span class="price">Hubungi CS</span></li>
         </ul>
       </div>
     </section>
 
     <footer>
-      © 2026 Jual Beli Musang SPY by Beebelac
+      © 2026 Jual Beli Musang SPY by Beebelac<br>
+      Website Resmi beebelac.my.id
     </footer>
   </div>
+
+  <!-- Tombol Melayang WhatsApp CS -->
+  <a href="https://chat.whatsapp.com/B8H8H6PGnpyFTWZVDRQVtL" class="floating-wa" target="_blank" title="Hubungi CS">
+    <svg style="width:28px;height:28px" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12.04 2C6.5 2 2 6.5 2 12.04C2 13.81 2.46 15.54 3.34 17.06L2 22L7.14 20.66C8.59 21.45 10.23 21.87 11.91 21.87H11.96C17.5 21.87 22 17.37 22 11.83C22 9.15 20.95 6.64 19.05 4.74C17.15 2.84 14.65 1.79 12.04 2M12.04 3.65C14.28 3.65 16.39 4.52 17.97 6.1C19.55 7.68 20.43 9.8 20.43 12.03C20.43 16.5 16.75 20.17 12.28 20.17H12.24C10.82 20.17 9.43 19.8 8.2 19.1L7.91 18.93L4.9 19.72L5.69 16.8L5.5 16.5C4.74 15.29 4.34 13.9 4.34 12.47C4.34 8 8.01 4.33 12.48 4.33L12.04 3.65M8.67 7.74C8.47 7.74 8.13 7.81 7.85 8.12C7.57 8.43 6.77 9.17 6.77 10.69C6.77 12.21 7.87 13.67 8.03 13.87C8.18 14.07 10.16 17.11 13.2 18.42C13.92 18.73 14.47 18.92 14.91 19.06C15.64 19.29 16.3 19.26 16.82 19.18C17.41 19.09 18.63 18.44 18.88 17.73C19.14 17.03 19.14 16.42 19.06 16.3C18.97 16.17 18.77 16.1 18.47 15.95C18.17 15.8 16.7 15.07 16.42 14.97C16.15 14.87 15.95 14.82 15.75 15.12C15.55 15.42 15 16.07 14.85 16.25C14.7 16.42 14.55 16.45 14.25 16.3C13.95 16.15 13 15.84 11.85 14.82C10.96 14.03 10.36 13.05 10.18 12.75C10 12.45 10.16 12.28 10.31 12.13C10.45 11.97 10.63 11.77 10.78 11.6C10.93 11.42 10.97 11.3 11.08 11.08C11.18 10.85 11.13 10.65 11.05 10.5C10.97 10.35 10.33 8.78 10.06 8.13C9.79 7.49 9.53 7.57 9.33 7.57C9.13 7.57 8.9 7.74 8.67 7.74Z" />
+    </svg>
+    CS
+  </a>
 
   <script>
     function toggleList(id, btn) {
@@ -188,9 +288,11 @@
       if (el.style.display === 'block') {
         el.style.display = 'none';
         arrow.style.transform = 'rotate(0deg)';
+        btn.style.filter = 'brightness(1)';
       } else {
         el.style.display = 'block';
         arrow.style.transform = 'rotate(180deg)';
+        btn.style.filter = 'brightness(1.2)';
       }
     }
   </script>
